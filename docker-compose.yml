@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+    container_name: go-backend
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=backend-db
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+    ports:
+      - 8887:8888
+    networks:
+      - db-network
+  db:
+    image: postgres:alpine3.17
+    container_name: backend-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    restart: always
+    ports:
+      - 5431:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - db-network
+volumes:
+  db-data:
+networks:
+  db-network:
