@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GIT_URL = 'https://github.com/tikayesi/try-jenkins.git'
+        GIT_URL = 'https://github.com/ajiinisti/docker-go-2.git'
         BRANCH = 'jenkinsfile'
         IMAGE = 'simple-golang'
         CONTAINER = 'simple-go-jenkins'
